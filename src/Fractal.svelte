@@ -7,14 +7,15 @@
   let p5;
   let radian_slider = 3,
     radian_start = 3,
-    length = HEIGHT / 2;
+    length = HEIGHT / 2,
+    stroke_weight = 2;
 
   const sketch = (_p5) => {
     _p5.setup = () => {
       _p5.createCanvas(WIDTH, HEIGHT);
       _p5.background(255, 255, 255);
       _p5.stroke("green");
-      _p5.strokeWeight(5);
+      _p5.strokeWeight(1);
       p5 = _p5;
     };
 
@@ -47,13 +48,14 @@
     return { x: x2 + x1, y: y2 + y1 };
   };
 
-  const updateFractal = (rad, rad_start, length) => {
+  const updateFractal = (rad, rad_start, length, sw) => {
     if (!p5) return;
+    p5.strokeWeight(sw);
     p5.background((255, 255, 255));
     goLine(WIDTH / 2, HEIGHT, WIDTH / 2, HEIGHT / 2, radian_start, length, rad);
   };
 
-  $: updateFractal(radian_slider, radian_start, length);
+  $: updateFractal(radian_slider, radian_start, length, stroke_weight);
 </script>
 
 <P5 {sketch} />
@@ -86,3 +88,13 @@
   step="1"
 />
 <label for="length">Length</label>
+
+<input
+  id="strokeWeight"
+  type="range"
+  bind:value={stroke_weight}
+  min="0"
+  max="5"
+  step=".1"
+/>
+<label for="strokeWeight">Stroke Weight</label>
