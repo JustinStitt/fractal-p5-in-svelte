@@ -4,7 +4,7 @@
 
 <div class="all">
   <div class="above">
-    <h1>App</h1>
+    <h1>Fractal Gen</h1>
   </div>
 
   <div class="main">
