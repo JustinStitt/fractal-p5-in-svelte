@@ -4,6 +4,8 @@
   const WIDTH = 500,
     HEIGHT = 500;
 
+  let p5;
+
   let line = {
     x1: WIDTH / 2,
     y1: HEIGHT,
@@ -14,28 +16,19 @@
   let rad = Math.PI / 4;
   let linelength = HEIGHT / 2;
 
-  const sketch = (p5) => {
-    p5.setup = () => {
-      p5.createCanvas(WIDTH, HEIGHT);
-      p5.background(255, 255, 255);
-      p5.stroke("green");
-      p5.strokeWeight(5);
+  const sketch = (_p5) => {
+    _p5.setup = () => {
+      _p5.createCanvas(WIDTH, HEIGHT);
+      _p5.background(255, 255, 255);
+      _p5.stroke("green");
+      _p5.strokeWeight(5);
+      p5 = _p5;
     };
 
-    p5.draw = () => {
-      p5.line(line.x1, line.y1, line.x2, line.y2);
-      let x1_dist = line.x1 - WIDTH / 2;
-      let x2_dist = line.x2 - WIDTH / 2;
-      p5.line(line.x1 - 2 * x1_dist, line.y1, line.x2 - 2 * x2_dist, line.y2);
-      line.x1 = line.x2;
-      line.y1 = line.y2;
-      let new_point = calculateNewPoint(line.x1, line.y1, rad, linelength);
-      line.x2 = new_point.x;
-      line.y2 = new_point.y;
-      rad -= Math.PI / 4;
-      linelength *= 0.75;
-    };
+    _p5.draw = () => {};
   };
+
+  const goLine = (x1, y1, x2, y2, r, l) => {};
 
   const calculateNewPoint = (x1, y1, radians, plength) => {
     let new_length = plength / 2;
